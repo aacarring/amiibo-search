@@ -1,0 +1,1 @@
+An Amiibo search which takes in user input for a character name and returns images and info of all of the character's Amiibos, made with HTML, Sass, JavaScript, and the Amiibo API.
