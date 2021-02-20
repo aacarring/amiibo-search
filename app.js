@@ -8,7 +8,10 @@ function searchCharacter() {
     fetch(`https://www.amiiboapi.com/api/amiibo/?name=${charName}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            if (data.code == 404) {
+                alert("Hmm...we can't find any Amiibos with that name, check your spelling and try again.");
+                return;
+            }
             let amiiboArr = data.amiibo;
             for (let elem of amiiboArr) {
                 let charName = elem.character;
@@ -16,6 +19,7 @@ function searchCharacter() {
                 let game = elem.gameSeries;
                 let type = elem.type;
                 let amiiboInfo = document.createElement('div');
+                amiiboInfo.classList.add("amiibo-cont");
                 amiiboInfo.innerHTML += `
                  <img src="${src}" alt="Image of character's Amiibo">
                  <div class="amiibo-info">
@@ -26,7 +30,7 @@ function searchCharacter() {
                 `;
                 charInfo.appendChild(amiiboInfo);
             }
-            
+            input.value = "";
 
         });
 }
